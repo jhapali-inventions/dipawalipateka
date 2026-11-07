@@ -128,25 +128,14 @@
       flex-shrink: 0;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       padding: 0 16px;
       background: linear-gradient(90deg, rgba(32,12,15,.96), rgba(74,28,20,.94), rgba(32,12,15,.96)) !important;
       border-bottom: 1px solid rgba(255,205,105,.28) !important;
       box-shadow: 0 8px 30px #0008;
       z-index: 50;
+      position: relative;
     }
-    .eco-top-left .btn-eco-back {
-      color: var(--desi-cream);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-weight: 600;
-      padding: 8px 12px;
-      border-radius: 8px;
-      transition: background 0.2s;
-    }
-    .eco-top-left .btn-eco-back:hover { background: rgba(255,255,255,0.1); }
     .eco-brand {
       font-family: 'Yatra One', serif !important;
       color: #ffe0a0 !important;
@@ -159,6 +148,10 @@
     .brand-tree { filter: drop-shadow(0 0 8px #ffb84d); }
 
     /* Sound Toggle */
+    .eco-top-right {
+      position: absolute;
+      right: 16px;
+    }
     .sound {
       background: rgba(255,255,255,0.1);
       border: 1px solid rgba(255,255,255,0.2);
@@ -180,7 +173,7 @@
       position: relative;
     }
 
-    /* 5. Sidebar (Left Panel) - FIXED LAYOUT */
+    /* 5. Sidebar (Left Panel) */
     .sidebar {
       width: 280px;
       flex-shrink: 0;
@@ -215,7 +208,6 @@
       text-transform: uppercase;
     }
 
-    /* Light them all button */
     .all {
       background: linear-gradient(135deg, #90EE90, #7FDD7F) !important;
       color: #0d1f0d !important;
@@ -240,7 +232,6 @@
       transform: none;
     }
 
-    /* Cards Container */
     .cards {
       display: flex;
       flex-direction: column;
@@ -317,7 +308,7 @@
       transform: none;
     }
 
-    /* 6. Main Stage Area - FIXED TO TAKE REMAINING SPACE */
+    /* 6. Main Stage Area */
     .stage {
       flex: 1;
       position: relative;
@@ -345,7 +336,6 @@
       background: linear-gradient(180deg, transparent, rgba(8,7,9,.88)), repeating-linear-gradient(90deg, transparent 0 7%, rgba(255,180,95,.035) 7.2% 7.5%, transparent 7.8% 13%);
     }
 
-    /* Canvas MUST fill the stage */
     canvas#fx {
       position: absolute;
       top: 0;
@@ -356,12 +346,27 @@
       display: block;
     }
 
-    /* Stage Overlays */
-    .stage .stars, .stage .greeting, .stage .horizon, .stage .ground, .stage .status, .stage .floor-iphone-gadget {
+    .stage .stars, .stage .greeting, .stage .horizon, .stage .ground, .stage .status {
       position: absolute;
       z-index: 10;
       pointer-events: none;
     }
+    
+    .wizzy-watermark {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255, 255, 255, 0.12);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 4px;
+      pointer-events: none;
+      z-index: 20;
+      text-transform: uppercase;
+    }
+
     .desi-toran {
       position: absolute;
       z-index: 12;
@@ -447,122 +452,7 @@
       mask: radial-gradient(circle, transparent 0 22%, #000 23% 25%, transparent 26% 34%, #000 35% 37%, transparent 38% 48%, #000 49% 51%, transparent 52%);
     }
 
-    /* Floor iPhone Gadget */
-    .floor-iphone-gadget {
-      bottom: 15px;
-      right: 15px;
-      pointer-events: auto !important;
-      background: rgba(0,0,0,0.6);
-      border: 1px solid rgba(144, 238, 144, 0.3);
-      border-radius: 12px;
-      padding: 10px 16px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.2s;
-      z-index: 15;
-    }
-    .floor-iphone-gadget:hover { 
-      transform: scale(1.05); 
-      background: rgba(0,0,0,0.8);
-      border-color: rgba(144, 238, 144, 0.5);
-    }
-    .floor-iphone-img { width: 40px; height: auto; }
-    .floor-iphone-tag { 
-      color: #90EE90; 
-      font-size: 0.85rem; 
-      font-weight: 600;
-      text-shadow: 0 0 10px rgba(144, 238, 144, 0.5);
-    }
-
-    /* 7. iPhone Recorder Modal & Mini Widget */
-    .iphone-recorder-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.9);
-      z-index: 100;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      backdrop-filter: blur(8px);
-    }
-    .iphone-recorder-backdrop.active { display: flex; }
-    .iphone-recorder-container {
-      background: #111;
-      border-radius: 24px;
-      width: 90%;
-      max-width: 400px;
-      aspect-ratio: 9/16;
-      max-height: 85vh;
-      position: relative;
-      border: 4px solid #333;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    .iphone-view { display: none; flex: 1; flex-direction: column; padding: 20px; color: white; text-align: center; }
-    .iphone-view.active { display: flex; }
-    .iphone-close-btn {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: rgba(255,255,255,0.2);
-      border: none;
-      color: white;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      cursor: pointer;
-      z-index: 10;
-      font-size: 1.2rem;
-    }
-    .btn-shutter-start {
-      margin-top: auto;
-      background: red;
-      color: white;
-      border: 4px solid white;
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      cursor: pointer;
-      align-self: center;
-      margin-bottom: 20px;
-    }
-    .preview-recorded-video { width: 100%; height: 60%; object-fit: cover; background: #000; border-radius: 12px; }
-    .preview-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
-    .preview-actions button { padding: 12px; border-radius: 8px; border: none; font-weight: 600; cursor: pointer; }
-    .btn-preview-download { background: #ff9d24; color: #2a120b; }
-    .btn-preview-retake { background: rgba(255,255,255,0.2); color: white; }
-    .btn-preview-back { background: transparent; color: #aaa; border: 1px solid #555 !important; }
-
-    .mini-recorder-widget {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: rgba(20, 0, 0, 0.95);
-      border: 2px solid #ff3333;
-      border-radius: 12px;
-      padding: 12px;
-      z-index: 90;
-      display: none;
-      flex-direction: column;
-      gap: 8px;
-      min-width: 160px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.8);
-    }
-    .mini-recorder-widget.active { display: flex; }
-    .mini-rec-header { display: flex; align-items: center; gap: 8px; color: #ff5555; font-weight: 700; font-size: 0.9rem; }
-    .mini-rec-dot { width: 10px; height: 10px; background: red; border-radius: 50%; animation: blink 1s infinite; }
-    @keyframes blink { 50% { opacity: 0.3; } }
-    .mini-rec-controls { display: flex; gap: 6px; }
-    .btn-mini-control { flex: 1; padding: 8px; border: none; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 4px; }
-    .btn-mini-pause { background: #ffd700; color: #000; }
-    .btn-mini-stop { background: #ff3333; color: #fff; }
-    .btn-mini-exit { background: #555; color: #fff; }
-    .rec-user-video-hidden { display: none; }
-
-    /* 8. Responsive Design (Mobile) */
+    /* 7. Responsive Design (Mobile) */
     @media (max-width: 768px) {
       .eco-body {
         flex-direction: column;
@@ -595,9 +485,6 @@
       .card-info { width: 100%; }
       .card button { width: 100%; padding: 6px; font-size: 0.8rem; }
       .stage { height: 60vh; }
-      .floor-iphone-gadget { bottom: 10px; right: 10px; padding: 8px 12px; }
-      .floor-iphone-img { width: 30px; }
-      .floor-iphone-tag { font-size: 0.75rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -610,14 +497,9 @@
   <div class="eco-app">
     <!-- Top Bar -->
     <header class="eco-top">
-      <div class="eco-top-left">
-        <a href="/?stage=landing" class="btn-eco-back" id="btn-eco-back" aria-label="Go back to Home">
-          <span class="back-arrow" aria-hidden="true">←</span><span>वापस</span>
-        </a>
-      </div>
       <div class="eco-brand">
         <span>पॉल्यूशन फ्री दिवाली</span>
-        <span class="brand-tree" aria-hidden="true"></span>
+        <span class="brand-tree" aria-hidden="true">🌳</span>
       </div>
       <div class="eco-top-right">
         <button class="sound" id="sound" role="switch" aria-checked="true" aria-label="Sound Toggle">
@@ -689,14 +571,15 @@
 
       <!-- Main Stage Area -->
       <main class="stage" id="stage">
+        <div class="wizzy-watermark" aria-hidden="true">BY WIZZY</div>
         <div class="desi-toran" aria-hidden="true"></div>
-        <div class="desi-greeting" aria-hidden="true">शुभ दीपावली · रोशनी, रंग और खुशियाँ</div>
+        <div class="desi-greeting" aria-hidden="true">शुभ दीपावली</div>
         <div class="desi-rangoli" aria-hidden="true"></div>
         <div class="desi-diyas" aria-hidden="true">
           <span>🪔</span><span>🪔</span><span></span><span>🪔</span><span>🪔</span>
         </div>
         <div class="stars"></div>
-        <div class="greeting"><h1>Happy <em>Diwali.</em></h1></div>
+        <div class="greeting"><h1>Happy <em>!</em></h1></div>
         <div class="horizon"></div>
         <div class="ground" aria-hidden="true"></div>
         
@@ -704,59 +587,11 @@
         <canvas id="fx"></canvas>
         
         <div class="status" aria-live="polite" style="position:absolute; top:10px; left:10px; z-index:15; color:#aaa; font-size:0.8rem;"></div>
-        
-        <!-- Floor iPhone Gadget -->
-        <button type="button" class="floor-iphone-gadget" id="floor-iphone-trigger" aria-label="दिवाली वीडियो रिकॉर्ड करें 📹" title="दिवाली वीडियो रिकॉर्ड करें 📹">
-          <img src="/assets/pollution-free-diwali/iphone_flat.webp" alt="" class="floor-iphone-img" loading="eager" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22white%22><text y=%2218%22 font-size=%2218%22>📱</text></svg>'">
-          <span class="floor-iphone-tag" aria-hidden="true">📹 Record Video</span>
-        </button>
       </main>
-    </div>
-
-    <!-- iPhone Camera Modal -->
-    <div class="iphone-recorder-backdrop" id="iphone-recorder-backdrop" aria-hidden="true">
-      <div class="iphone-recorder-container" id="iphone-recorder-container" role="dialog" aria-modal="true" aria-label="iPhone Diwali Reel Recorder">
-        <button type="button" class="iphone-close-btn" id="iphone-close-btn" aria-label="Close iPhone Camera"><span aria-hidden="true">✕</span></button>
-        
-        <!-- Standby View -->
-        <div class="iphone-view iphone-view-standby active" id="view-standby">
-          <span style="background:rgba(144,238,144,0.2); color:#90EE90; padding:4px 12px; border-radius:20px; font-size:0.8rem; align-self:center;">🪔 Diwali Reel Studio</span>
-          <h2 style="margin-top:15px; font-family:'Yatra One',serif; color:#ffe0a0;">दिवाली वीडियो बनाएं</h2>
-          <p style="color:#ccc; font-size:0.9rem; margin-top:8px; line-height:1.4;">ऊपर स्क्रीन पर लाइव पटाखे फूटेंगे और नीचे आपका वीडियो व कमेंट्री रिकॉर्ड होगी!</p>
-          <div style="flex:1; display:flex; align-items:center; justify-content:center; font-size:4rem;"></div>
-          <button type="button" class="btn-shutter-start" id="btn-shutter-start" aria-label="Start Camera Recording"></button>
-        </div>
-
-        <!-- Preview View -->
-        <div class="iphone-view iphone-view-preview" id="view-preview">
-          <video id="preview-recorded-video" class="preview-recorded-video" playsinline loop controls></video>
-          <div class="preview-actions">
-            <button type="button" class="btn-preview-download" id="btn-preview-download"><span>📥 गैलरी में सेव करें</span></button>
-            <button type="button" class="btn-preview-retake" id="btn-preview-retake"><span>🔄 फिर से बनाएं</span></button>
-            <button type="button" class="btn-preview-back" id="btn-preview-back"><span>← पटाखे फोड़ने वापस जाएं</span></button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Mini Recording Widget -->
-    <div class="mini-recorder-widget" id="mini-recorder-widget" aria-label="Active Video Recording Controls">
-      <div class="mini-rec-header">
-        <span class="mini-rec-dot" id="mini-rec-dot"></span>
-        <span class="mini-rec-status" id="mini-rec-status">Recording...</span>
-        <span class="mini-rec-timer" id="mini-rec-timer" style="margin-left:auto;">00:60</span>
-      </div>
-      <div class="mini-rec-controls">
-        <button type="button" class="btn-mini-control btn-mini-pause" id="btn-mini-pause" title="Pause / Resume"><span id="mini-pause-icon">⏸</span><span id="mini-pause-text">Pause</span></button>
-        <button type="button" class="btn-mini-control btn-mini-stop" id="btn-mini-stop" title="Stop & View Video"><span>⏹</span><span>Stop</span></button>
-        <button type="button" class="btn-mini-control btn-mini-exit" id="btn-mini-exit" title="Exit & Cancel"><span>✕</span><span>Exit</span></button>
-      </div>
-      <video id="rec-user-video" class="rec-user-video-hidden" playsinline muted autoplay></video>
     </div>
   </div>
 
   <!-- JavaScript Logic -->
-  <script src="/assets/js/fix-webm-duration.js" onerror="console.warn('fix-webm-duration.js not found, continuing without it')"></script>
   <script>
     (function() {
       const stage = document.querySelector('#stage');
@@ -1366,19 +1201,6 @@
         };
       }
 
-      // Back Navigation
-      const backBtn = document.querySelector('#btn-eco-back');
-      if (backBtn) {
-        backBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          if (audio && audio.state === 'running') audio.suspend().catch(() => {});
-          if (window.history.length > 1 && document.referrer && document.referrer.includes(window.location.host)) {
-            window.history.back(); return;
-          }
-          window.location.href = '/?stage=landing';
-        });
-      }
-
       // Visibility Change Clean Handling
       document.addEventListener('visibilitychange', () => {
         previous = 0;
@@ -1394,327 +1216,6 @@
           audio.resume().catch(() => {});
         }
       });
-
-      // iPhone Recorder Logic
-      const floorIphoneTrigger = document.querySelector('#floor-iphone-trigger');
-      const recorderBackdrop = document.querySelector('#iphone-recorder-backdrop');
-      const viewStandby = document.querySelector('#view-standby');
-      const viewPreview = document.querySelector('#view-preview');
-      const btnShutterStart = document.querySelector('#btn-shutter-start');
-      const btnPreviewDownload = document.querySelector('#btn-preview-download');
-      const btnPreviewRetake = document.querySelector('#btn-preview-retake');
-      const btnPreviewBack = document.querySelector('#btn-preview-back');
-      const iphoneCloseBtn = document.querySelector('#iphone-close-btn');
-
-      const miniWidget = document.querySelector('#mini-recorder-widget');
-      const miniRecStatus = document.querySelector('#mini-rec-status');
-      const miniRecTimer = document.querySelector('#mini-rec-timer');
-      const miniRecDot = document.querySelector('#mini-rec-dot');
-      const btnMiniPause = document.querySelector('#btn-mini-pause');
-      const miniPauseIcon = document.querySelector('#mini-pause-icon');
-      const miniPauseText = document.querySelector('#mini-pause-text');
-      const btnMiniStop = document.querySelector('#btn-mini-stop');
-      const btnMiniExit = document.querySelector('#btn-mini-exit');
-      const userVideo = document.querySelector('#rec-user-video');
-      const previewVideo = document.querySelector('#preview-recorded-video');
-
-      let userStream = null, mediaRecorder = null, recordedChunks = [], recordedBlob = null, recordedVideoUrl = null;
-      let recordingTimerInterval = null, recordLoopRafId = null, offscreenCanvas = null, offscreenCtx = null;
-      let remainingSeconds = 60, isPaused = false, chosenMimeType = 'video/mp4';
-      let audioMixerDest = null, micSourceNode = null, accumulatedRecordedMs = 0, lastResumeTime = 0;
-
-      async function fixVideoDuration(blob, durationMs) {
-        if (!blob || blob.size === 0 || !durationMs) return blob;
-        try {
-          const headBuf = await blob.slice(0, 16).arrayBuffer();
-          const headBytes = new Uint8Array(headBuf);
-          const isWebm = headBytes[0] === 0x1A && headBytes[1] === 0x45 && headBytes[2] === 0xDF && headBytes[3] === 0xA3;
-          if (isWebm && typeof window.ysFixWebmDuration === 'function') {
-            try { return await window.ysFixWebmDuration(blob, durationMs, { logger: false }); } catch(err) {}
-          }
-          return blob;
-        } catch(e) { return blob; }
-      }
-
-      function switchView(viewName) {
-        if (viewStandby) viewStandby.classList.toggle('active', viewName === 'standby');
-        if (viewPreview) viewPreview.classList.toggle('active', viewName === 'preview');
-        if (recorderBackdrop) recorderBackdrop.classList.toggle('state-preview', viewName === 'preview');
-      }
-
-      function openIphoneModal() {
-        if (!recorderBackdrop) return;
-        if (floorIphoneTrigger) floorIphoneTrigger.style.visibility = 'hidden';
-        recorderBackdrop.classList.add('active');
-        switchView('standby');
-      }
-
-      function abortRecordingAndExit() {
-        if (recordingTimerInterval) { clearInterval(recordingTimerInterval); recordingTimerInterval = null; }
-        if (recordLoopRafId) { cancelAnimationFrame(recordLoopRafId); recordLoopRafId = null; }
-        if (mediaRecorder && mediaRecorder.state !== 'inactive') {
-          try { mediaRecorder.ondataavailable = null; mediaRecorder.onstop = null; mediaRecorder.stop(); } catch(e) {}
-        }
-        mediaRecorder = null;
-        if (userStream) { try { userStream.getTracks().forEach(t => t.stop()); } catch(e) {} userStream = null; }
-        if (userVideo) userVideo.srcObject = null;
-        if (micSourceNode) { try { micSourceNode.disconnect(); } catch(e) {} micSourceNode = null; }
-        recordedChunks = []; isPaused = false; accumulatedRecordedMs = 0; lastResumeTime = 0;
-        if (miniWidget) miniWidget.classList.remove('active');
-        if (floorIphoneTrigger) floorIphoneTrigger.style.visibility = 'visible';
-        if (recorderBackdrop) recorderBackdrop.classList.remove('active', 'state-preview');
-        switchView('standby');
-      }
-
-      function closeIphoneModal() {
-        if (!recorderBackdrop) return;
-        abortRecordingAndExit();
-        if (previewVideo) { previewVideo.pause(); previewVideo.removeAttribute('src'); previewVideo.load(); }
-        recorderBackdrop.classList.remove('active', 'state-preview');
-        if (miniWidget) miniWidget.classList.remove('active');
-        if (floorIphoneTrigger) floorIphoneTrigger.style.visibility = 'visible';
-        switchView('standby');
-      }
-
-      function updateTimerDisplay() {
-        const mins = Math.floor(remainingSeconds / 60);
-        const secs = remainingSeconds % 60;
-        const fmt = String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
-        if (miniRecTimer) miniRecTimer.textContent = fmt;
-      }
-
-      function stopRecording(save = true) {
-        if (miniWidget) miniWidget.classList.remove('active');
-        if (save && mediaRecorder && mediaRecorder.state !== 'inactive') {
-          try {
-            if (mediaRecorder.state === 'paused') mediaRecorder.resume();
-            if (typeof mediaRecorder.requestData === 'function') mediaRecorder.requestData();
-            mediaRecorder.stop();
-          } catch(err) { console.error('Stop recorder error:', err); }
-        } else {
-          abortRecordingAndExit();
-        }
-      }
-
-      if (floorIphoneTrigger) floorIphoneTrigger.addEventListener('click', async () => { await unlockAudio(); openIphoneModal(); });
-      if (iphoneCloseBtn) iphoneCloseBtn.addEventListener('click', closeIphoneModal);
-      if (recorderBackdrop) recorderBackdrop.addEventListener('click', (e) => { if (e.target === recorderBackdrop) closeIphoneModal(); });
-      if (btnPreviewBack) btnPreviewBack.addEventListener('click', closeIphoneModal);
-      if (btnPreviewRetake) btnPreviewRetake.addEventListener('click', () => { if (previewVideo) { previewVideo.pause(); previewVideo.removeAttribute('src'); previewVideo.load(); } openIphoneModal(); });
-
-      if (btnShutterStart) {
-        btnShutterStart.addEventListener('click', async () => {
-          btnShutterStart.disabled = true;
-          await unlockAudio();
-          try {
-            userStream = null; let hasMic = false;
-            try {
-              userStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user', width: { ideal: 720 }, height: { ideal: 720 } }, audio: true });
-              hasMic = true;
-            } catch (err1) {
-              try {
-                userStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-                hasMic = true;
-              } catch (err2) {
-                try {
-                  userStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
-                  hasMic = false;
-                } catch (err3) {
-                  alert('कैमरा शुरू करने में समस्या आई। कृपया अपने ब्राउज़र में कैमरा अनुमति जांचें।');
-                  btnShutterStart.disabled = false; return;
-                }
-              }
-            }
-
-            if (userVideo) { userVideo.srcObject = userStream; userVideo.play().catch(e => console.warn('userVideo.play error:', e)); }
-            if (recorderBackdrop) recorderBackdrop.classList.remove('active', 'state-preview');
-            if (floorIphoneTrigger) floorIphoneTrigger.style.visibility = 'hidden';
-            if (miniWidget) miniWidget.classList.add('active');
-            isPaused = false;
-            if (miniPauseIcon) miniPauseIcon.textContent = '';
-            if (miniPauseText) miniPauseText.textContent = 'Pause';
-            if (miniRecDot) miniRecDot.classList.remove('paused');
-            if (miniRecStatus) miniRecStatus.textContent = 'Recording...';
-
-            offscreenCanvas = document.createElement('canvas');
-            offscreenCanvas.width = 720; offscreenCanvas.height = 1280;
-            offscreenCtx = offscreenCanvas.getContext('2d');
-            offscreenCtx.fillStyle = '#060c09'; offscreenCtx.fillRect(0, 0, 720, 1280);
-
-            try {
-              const actx = audio || new (window.AudioContext || window.webkitAudioContext)();
-              audioMixerDest = actx.createMediaStreamDestination();
-              if (master) { try { master.connect(audioMixerDest); } catch(e) {} }
-              if (hasMic && userStream && userStream.getAudioTracks().length > 0) {
-                try { micSourceNode = actx.createMediaStreamSource(userStream); micSourceNode.connect(audioMixerDest); } catch(e) {}
-              }
-            } catch(e) { console.warn('Audio mixer initialization notice:', e); }
-
-            const compositeStream = offscreenCanvas.captureStream ? offscreenCanvas.captureStream(30) : offscreenCanvas.mozCaptureStream(30);
-            if (audioMixerDest && audioMixerDest.stream) {
-              const mixedAudioTrack = audioMixerDest.stream.getAudioTracks()[0];
-              if (mixedAudioTrack) { try { compositeStream.addTrack(mixedAudioTrack); } catch(e) {} }
-            }
-
-            chosenMimeType = '';
-            const candidateMimeTypes = ['video/mp4;codecs=avc1,mp4a.40.2', 'video/mp4;codecs=avc1', 'video/webm;codecs=vp9,opus', 'video/webm;codecs=vp8,opus', 'video/webm'];
-            for (let i = 0; i < candidateMimeTypes.length; i++) {
-              if (typeof MediaRecorder !== 'undefined' && MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(candidateMimeTypes[i])) {
-                chosenMimeType = candidateMimeTypes[i]; break;
-              }
-            }
-
-            recordedChunks = [];
-            try { mediaRecorder = new MediaRecorder(compositeStream, chosenMimeType ? { mimeType: chosenMimeType } : {}); }
-            catch(err) { mediaRecorder = new MediaRecorder(compositeStream); }
-
-            mediaRecorder.ondataavailable = (e) => { if (e.data && e.data.size > 0) recordedChunks.push(e.data); };
-
-            mediaRecorder.onstop = async () => {
-              if (userStream) { try { userStream.getTracks().forEach(t => t.stop()); } catch(e) {} userStream = null; }
-              if (userVideo) userVideo.srcObject = null;
-              if (micSourceNode) { try { micSourceNode.disconnect(); } catch(e) {} micSourceNode = null; }
-              if (recordingTimerInterval) { clearInterval(recordingTimerInterval); recordingTimerInterval = null; }
-              if (recordLoopRafId) { cancelAnimationFrame(recordLoopRafId); recordLoopRafId = null; }
-
-              if (!isPaused && lastResumeTime > 0) { accumulatedRecordedMs += (Date.now() - lastResumeTime); lastResumeTime = 0; }
-              const timerBasedMs = Math.max(1, 60 - remainingSeconds) * 1000;
-              const actualDurationMs = accumulatedRecordedMs > 500 ? accumulatedRecordedMs : timerBasedMs;
-              isPaused = false;
-
-              const rawMime = chosenMimeType || 'video/webm';
-              const rawBlob = new Blob(recordedChunks, { type: rawMime });
-              try { recordedBlob = await fixVideoDuration(rawBlob, actualDurationMs); } catch(fixErr) { recordedBlob = rawBlob; }
-
-              if (recordedVideoUrl) URL.revokeObjectURL(recordedVideoUrl);
-              recordedVideoUrl = URL.createObjectURL(recordedBlob);
-
-              if (previewVideo) {
-                previewVideo.src = recordedVideoUrl; previewVideo.loop = true; previewVideo.muted = false; previewVideo.load();
-                previewVideo.onended = () => { previewVideo.currentTime = 0; previewVideo.play().catch(() => {}); };
-                const playPromise = previewVideo.play();
-                if (playPromise !== undefined) { playPromise.catch(() => { previewVideo.muted = true; previewVideo.play().catch(() => {}); }); }
-              }
-
-              if (miniWidget) miniWidget.classList.remove('active');
-              if (floorIphoneTrigger) floorIphoneTrigger.style.visibility = 'hidden';
-              if (recorderBackdrop) recorderBackdrop.classList.add('active', 'state-preview');
-              switchView('preview');
-            };
-
-            try { mediaRecorder.start(1000); } catch(startErr) { mediaRecorder.start(); }
-
-            remainingSeconds = 60; accumulatedRecordedMs = 0; lastResumeTime = Date.now();
-            updateTimerDisplay();
-            recordingTimerInterval = setInterval(() => {
-              remainingSeconds--; updateTimerDisplay();
-              if (remainingSeconds <= 0) stopRecording(true);
-            }, 1000);
-
-            function recordLoop() {
-              if (!offscreenCtx) return;
-              offscreenCtx.fillStyle = '#060c09'; offscreenCtx.fillRect(0, 0, 720, 1280);
-
-              if (canvas && canvas.width > 0 && canvas.height > 0) {
-                const cW = canvas.width, cH = canvas.height;
-                const upperW = 720, upperH = 640;
-                const floorClearance = 60;
-                const destH = upperH - floorClearance;
-                let sW = destH > 0 ? (upperW * cH / destH) : cW;
-                let sX = 0;
-                if (sW < cW) { sX = (cW - sW) / 2; } else { sW = cW; sX = 0; }
-
-                const groundGlow = offscreenCtx.createLinearGradient(0, destH - 120, 0, upperH);
-                groundGlow.addColorStop(0, 'rgba(16, 31, 25, 0)');
-                groundGlow.addColorStop(0.75, 'rgba(27, 44, 32, 0.4)');
-                groundGlow.addColorStop(1, 'rgba(10, 20, 15, 0.85)');
-                offscreenCtx.fillStyle = groundGlow;
-                offscreenCtx.fillRect(0, destH - 120, upperW, upperH - (destH - 120));
-                offscreenCtx.drawImage(canvas, sX, 0, sW, cH, 0, 0, upperW, destH);
-              }
-
-              if (userVideo && userVideo.readyState >= 2) {
-                offscreenCtx.save();
-                offscreenCtx.beginPath(); offscreenCtx.rect(0, 640, 720, 640); offscreenCtx.clip();
-                offscreenCtx.translate(720, 640); offscreenCtx.scale(-1, 1);
-                const vw = userVideo.videoWidth || 720, vh = userVideo.videoHeight || 640;
-                const targetAspect = 720 / 640, videoAspect = vw / vh;
-                let dw = 720, dh = 640, dx = 0, dy = 0;
-                if (videoAspect > targetAspect) { dw = 640 * videoAspect; dx = (720 - dw) / 2; }
-                else { dh = 720 / videoAspect; dy = (640 - dh) / 2; }
-                offscreenCtx.drawImage(userVideo, dx, dy, dw, dh);
-                offscreenCtx.restore();
-              }
-
-              offscreenCtx.strokeStyle = 'rgba(241, 196, 15, 0.85)'; offscreenCtx.lineWidth = 3;
-              offscreenCtx.beginPath(); offscreenCtx.moveTo(0, 640); offscreenCtx.lineTo(720, 640); offscreenCtx.stroke();
-
-              const badgeW = 276, badgeH = 38, badgeX = (720 - badgeW) / 2, badgeY = 640 - (badgeH / 2);
-              offscreenCtx.save();
-              offscreenCtx.shadowColor = 'rgba(0, 0, 0, 0.75)'; offscreenCtx.shadowBlur = 10; offscreenCtx.shadowOffsetY = 2;
-              const goldGrad = offscreenCtx.createLinearGradient(badgeX, badgeY, badgeX + badgeW, badgeY + badgeH);
-              goldGrad.addColorStop(0, '#e5a00d'); goldGrad.addColorStop(0.35, '#ffd447'); goldGrad.addColorStop(0.65, '#ffe785'); goldGrad.addColorStop(1, '#e5a00d');
-              offscreenCtx.fillStyle = goldGrad;
-              offscreenCtx.beginPath();
-              if (typeof offscreenCtx.roundRect === 'function') offscreenCtx.roundRect(badgeX, badgeY, badgeW, badgeH, 19);
-              else offscreenCtx.rect(badgeX, badgeY, badgeW, badgeH);
-              offscreenCtx.fill();
-              offscreenCtx.shadowColor = 'transparent'; offscreenCtx.strokeStyle = '#fff8db'; offscreenCtx.lineWidth = 1.8; offscreenCtx.stroke();
-              offscreenCtx.fillStyle = '#1a0f00'; offscreenCtx.font = 'bold 17px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-              offscreenCtx.textAlign = 'center'; offscreenCtx.textBaseline = 'middle';
-              offscreenCtx.fillText('Happy Diwali 🪔 | Faah.fun', 360, 640);
-              offscreenCtx.restore();
-
-              recordLoopRafId = requestAnimationFrame(recordLoop);
-            }
-            recordLoopRafId = requestAnimationFrame(recordLoop);
-          } catch (globalRecErr) {
-            console.error('Fatal recording initialization error:', globalRecErr);
-            alert('रिकॉर्डिंग शुरू करने में समस्या आई: ' + (globalRecErr.message || globalRecErr.name));
-          } finally {
-            btnShutterStart.disabled = false;
-          }
-        });
-      }
-
-      if (btnMiniPause) {
-        btnMiniPause.addEventListener('click', () => {
-          if (!mediaRecorder) return;
-          if (!isPaused) {
-            if (mediaRecorder.state === 'recording') { try { mediaRecorder.pause(); } catch(e) {} }
-            if (recordingTimerInterval) { clearInterval(recordingTimerInterval); recordingTimerInterval = null; }
-            if (lastResumeTime > 0) { accumulatedRecordedMs += (Date.now() - lastResumeTime); lastResumeTime = 0; }
-            isPaused = true;
-            if (miniPauseIcon) miniPauseIcon.textContent = '▶';
-            if (miniPauseText) miniPauseText.textContent = 'Resume';
-            if (miniRecDot) miniRecDot.classList.add('paused');
-            if (miniRecStatus) miniRecStatus.textContent = 'Paused ⏸';
-          } else {
-            if (mediaRecorder.state === 'paused') { try { mediaRecorder.resume(); } catch(e) {} }
-            lastResumeTime = Date.now(); isPaused = false;
-            if (miniPauseIcon) miniPauseIcon.textContent = '';
-            if (miniPauseText) miniPauseText.textContent = 'Pause';
-            if (miniRecDot) miniRecDot.classList.remove('paused');
-            if (miniRecStatus) miniRecStatus.textContent = 'Recording...';
-            recordingTimerInterval = setInterval(() => {
-              remainingSeconds--; updateTimerDisplay();
-              if (remainingSeconds <= 0) stopRecording(true);
-            }, 1000);
-          }
-        });
-      }
-
-      if (btnMiniStop) btnMiniStop.addEventListener('click', () => { stopRecording(true); });
-      if (btnMiniExit) btnMiniExit.addEventListener('click', () => { abortRecordingAndExit(); });
-
-      function downloadRecordedVideo() {
-        if (!recordedBlob || !recordedVideoUrl) return;
-        const a = document.createElement('a');
-        a.href = recordedVideoUrl;
-        a.download = 'Diwali_2026_FaahFun_Reel.mp4';
-        document.body.appendChild(a); a.click(); document.body.removeChild(a);
-      }
-      if (btnPreviewDownload) btnPreviewDownload.addEventListener('click', downloadRecordedVideo);
     })();
   </script>
 
@@ -1736,3 +1237,4 @@
   </script>
 </body>
 </html>
+  
